@@ -53,10 +53,10 @@ class SeleniumMiddleware:
 
         # locally installed driver
         if driver_executable_path is not None:
-            # driver_kwargs = {
-            #     'executable_path': driver_executable_path,
-            #     f'{driver_name}_options': driver_options
-            # }
+            driver_kwargs = {
+                'executable_path': driver_executable_path,
+                f'{driver_name}_options': driver_options
+            }
             # self.driver = driver_klass(**driver_kwargs)
             service_module = import_module(f'{webdriver_base_path}.service')
             service_klass = getattr(service_module, 'Service')
@@ -64,10 +64,10 @@ class SeleniumMiddleware:
                 'executable_path': driver_executable_path,
             }
             service = service_klass(**service_kwargs)
-            driver_kwargs = {
-            'service': service,
-            'options': driver_options
-            }
+            # driver_kwargs = {
+            # 'service': service,
+            # 'options': driver_options
+            # }
             self.driver = driver_klass(**driver_kwargs)
         # remote driver
         elif command_executor is not None:
